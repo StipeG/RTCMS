@@ -96,14 +96,12 @@ namespace RezdyConnection
         }
 
         [WebMethod]
-        public XmlDocument TourCMSQuery(string path, int channelId, string verb)
+        public XmlDocument TourCMSQuery(string path, int channelId, string verb, string _baseUrl, int MerchantID, 
+            string PrivateKey)
         {
             if (String.IsNullOrEmpty(path))
                 return null;
 
-            string _baseUrl = "https://api.tourcms.com";
-            int MerchantID = 38900;
-            string PrivateKey = "f8abea41720a";
             string url = _baseUrl + path;
             DateTime outboundTime = DateTime.Now.ToUniversalTime();
             string signature = GenerateSignature(path, verb, channelId, outboundTime,PrivateKey, MerchantID);

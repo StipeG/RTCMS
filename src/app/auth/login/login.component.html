@@ -5,13 +5,10 @@
 <form [formGroup]="form" (ngSubmit)="form.valid && loginUser()">
     <fieldset [disabled]="loginLoading">
         <mat-form-field>
-            <input matInput type="email" placeholder="Email" formControlName="email">
+            <input matInput type="text" placeholder="Username" formControlName="username">
 
-            <mat-error *ngIf="form.controls['email'].hasError('email')" class="form-control-feedback">
-                Invalid Email
-            </mat-error>
-            <mat-error *ngIf="form.controls['email'].hasError('required')" class="form-control-feedback">
-                Email is required
+            <mat-error *ngIf="form.controls['username'].hasError('required')" class="form-control-feedback">
+                Username is required
             </mat-error>
         </mat-form-field>
 

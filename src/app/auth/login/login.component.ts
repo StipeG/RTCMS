@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     this.loginLoading = true;
 
     this.loginSubscription = this.authService
-      .loginWithUserCredentials(this.form.value.email, this.form.value.password)
+      .loginWithUserCredentials(this.form.value.username, this.form.value.password)
       .pipe(finalize(() => this.loginLoading = false))
       .subscribe(
         data => {
@@ -54,9 +54,8 @@ export class LoginComponent implements OnInit {
 
   private initFormBuilder() {
     this.form = this.formBuilder.group({
-      email: ['', [
-        Validators.required,
-        Validators.email
+      username: ['', [
+        Validators.required
       ]],
       password: ['', Validators.required]
     });

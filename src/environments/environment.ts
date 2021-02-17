@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   backend: {
-    host: 'http://localhost:9004',
+    host: 'http://mefst.test/backend/public',
   },
   oauth: {
     host: 'https://demo0034835.mockable.io',

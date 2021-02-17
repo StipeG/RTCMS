@@ -75,7 +75,7 @@ export class AuthService {
   }
 
   get accessToken() {
-    return localStorage.session ? JSON.parse(localStorage.session).token : null;
+    return localStorage.session ? JSON.parse(localStorage.session).access_token : null;
   }
 
   get refreshToken() {

@@ -1,6 +1,6 @@
 export class HttpApi {
   // OAuth
-  static userLogin = 'api/students/authenticate';
+  static userLogin = 'api/login';
 
   // Start Mutual Auth
   static userRegister = 'api/user/register';

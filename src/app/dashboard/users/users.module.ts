@@ -4,6 +4,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { UsersService } from './users.service';
 
 
+
 @NgModule({
   declarations: [
     ...UserRoutingModule.components
@@ -12,6 +13,7 @@ import { UsersService } from './users.service';
     UserRoutingModule,
     SharedModule,
   ],
-  providers: [UsersService]
+  providers: [UsersService],
+
 })
 export class UsersModule { }

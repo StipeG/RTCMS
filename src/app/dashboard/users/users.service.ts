@@ -6,7 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { HttpApi } from '../../core/http/http-api';
 
 
-export class Users
+export interface Users
 {
   Id: number;
   FirstName: string;
@@ -21,11 +21,10 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
   list(): Observable<Users[]> {
-    return this.http.get(HttpApi.usersList)
+    return this.http.get<Users[]>(HttpApi.usersList)
         .pipe(
-        map(response => {  
-
-          return <Users[]>response;
+        map((response: Users[])  => {  
+          return response as Users[];
       }),
       catchError( error => {
           return throwError(error); 

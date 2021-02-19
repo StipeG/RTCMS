@@ -1,0 +1,77 @@
+<div class="shredTable  mat-elevation-z8">
+
+    <div class="filterHeader">
+        <mat-form-field class="w100perc">
+        <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event.target.value)" [placeholder]="placeholder">
+        </mat-form-field>
+    </div>
+    <mat-table #dataTable [dataSource]="dataSource" matSort multiTemplateDataRows>
+
+        <!-- Toggle Button Start -->
+        <ng-container matColumnDef="trigger">
+            <mat-header-cell *matHeaderCellDef fxFlex="70px">
+                <mat-icon>menu</mat-icon>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = dataIndex;" fxFlex="70px">
+                <button mat-icon-button (click)="expand_icon_click(row)">
+                    <mat-icon>{{ expandedElement[row[primary_key]] ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <!-- Toggle Button End -->
+
+   
+        <ng-container [matColumnDef]="column.id" *ngFor="let column of visibleColumns; trackBy: trackByFn; let i = index">
+            <!-- Header cell -->
+            <mat-header-cell *matHeaderCellDef [fxFlex]="column.width + 'px'" mat-sort-header [resizeColumn]="true" [index]="i">{{ column.label }}</mat-header-cell>
+            <mat-cell *matCellDef="let row" [fxFlex]="column.width + 'px'">
+               <ng-container *ngIf="column.type === 'string' || column.type === 'number' || column.type === 'date'">
+                  {{ row[column.id] }}
+              </ng-container>
+              <ng-container *ngIf="column.type === 'checkbox'">
+                <mat-checkbox [checked]="row[column.id]" [disabled]="column.disabled === true">
+                </mat-checkbox>
+             </ng-container>
+              <ng-container *ngIf="column.type === 'action'">
+              </ng-container>
+            </mat-cell>
+
+          </ng-container>
+
+
+        <ng-container matColumnDef="hidden">
+            <mat-cell *matCellDef="let row;let i = dataIndex;" class="matCell" fxLayout="column" fxLayoutAlign="center start">
+                <p *ngFor="let hiddenColumn of hiddenColumns" fxLayout="row" class="m8">
+                    <strong>
+                        {{ hiddenColumn.label }}: 
+                    </strong>            
+                    <span *ngIf="hiddenColumn.type === 'string' || hiddenColumn.type === 'number' || hiddenColumn.type === 'date'" class="marLeft5">
+                        {{ row[hiddenColumn.id] }}
+                    </span>
+                    <ng-container *ngIf="hiddenColumn.type === 'checkbox'" >
+                        <mat-checkbox [checked]="row[hiddenColumn.id]" class="chkHidMar" [disabled]="hiddenColumn.disabled === true">
+                        </mat-checkbox>
+                     </ng-container>
+                </p>
+            </mat-cell>
+        </ng-container>
+    
+ 
+        <mat-header-row *matHeaderRowDef="visibleColumnsIds" class="matHeaderRow"></mat-header-row>
+
+        <mat-row *matRowDef="let row; let i = dataIndex; columns: visibleColumnsIds" class="matRowVisible visible-row-{{row[primary_key]}}"
+        (click)="selection.toggle(row)" 
+        [ngClass]="{hovered: row.hovered && selectionMode === true, highlighted: selection.isSelected(row) && selectionMode === true}"
+        (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></mat-row>
+
+        <!-- Body row definition for hidden columns -->
+        <mat-row *matRowDef="let row; let i = dataIndex; columns: ['hidden'];" [@detailExpand]="getExpendedElemLenght() && expandedElement[row[primary_key]] ? 'expanded' : 'collapsed'"
+            style="overflow: hidden" class="matRowHidden hidden-row-{{row[primary_key]}} hidColLength-{{hiddenColumns.length}}" [ngClass]="expandedElement[row[primary_key]] ? 'expanded' : 'collapsed'"></mat-row>
+
+    </mat-table>
+
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event"></mat-paginator>
+
+</div>
+

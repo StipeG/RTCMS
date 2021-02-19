@@ -11,12 +11,16 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DndDirective } from './components/file-upload-preview/dnd.directive';
 import { ConfirmDialogComponent } from './utils/dialogs/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './utils/dialogs/alert-dialog/alert-dialog.component';
+import { SharedTableComponent } from './utils/shared-table/shared-table.component';
+import {ResizeColumnDirective} from './utils/shared-table/resize-column.directive';
 
 const COMPONENTS = [
   AlertDialogComponent,
   ConfirmDialogComponent,
   FileUploadPreviewComponent,
   SidenavComponent,
+  SharedTableComponent,
+  ResizeColumnDirective
 ];
 
 @NgModule({
@@ -26,7 +30,8 @@ const COMPONENTS = [
   ],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   exports: [
     CommonModule,

@@ -1,1 +1,32 @@
-<p>Hello</p>
+<div class="carded">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent">
+            <h2>Users</h2>
+            <div>
+                <button type="button" mat-raised-button class="u-margin-l-8" (click)="changePassword_click()">
+                    <mat-icon>password</mat-icon>CHANGE PASSWORD
+                </button>
+                <button type="button" mat-raised-button class="u-margin-l-8" [disabled]="!selection.hasValue || !selection.selected || !selection.selected[0]" (click)="deleteUser_clicked()">
+                    <mat-icon>delete</mat-icon>DELETE
+                </button>
+                
+                <button type="button" mat-raised-button class="u-margin-l-8" [disabled]="!selection.hasValue || !selection.selected || !selection.selected[0]" (click)="updateUser_clicked()">
+                    <mat-icon>edit</mat-icon>EDIT
+                </button>
+
+                <button type="button" mat-raised-button class="u-margin-l-8" (click)="addUser()">
+                    <mat-icon>add</mat-icon>ADD
+                </button>
+            </div>
+        </div>
+        <div class="content-card">
+            <perfect-scrollbar>
+                <app-shared-table [dataSource]="dataSource" [columnsdef]="displayedColumns" 
+                [placeholder]="placeholder" (clickRequest)="clickChild($event)"
+                [annotiator]="annotiator" [selectionMode]="selectionMode" [selection]="selection"></app-shared-table>
+            
+            </perfect-scrollbar>
+        </div>
+    </div>
+</div>

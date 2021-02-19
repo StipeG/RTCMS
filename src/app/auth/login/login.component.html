@@ -1,33 +1,28 @@
 <div class="logo" fxHide.gt-xs>A</div>
 
-<div class="title">LOGIN TO YOUR ACCOUNT</div>
+<div class="title">Prijavite se u korisnički račun</div>
 
 <form [formGroup]="form" (ngSubmit)="form.valid && loginUser()">
     <fieldset [disabled]="loginLoading">
         <mat-form-field>
-            <input matInput type="text" placeholder="Username" formControlName="username">
+            <input matInput type="text" placeholder="Korisničko ime" formControlName="username">
 
             <mat-error *ngIf="form.controls['username'].hasError('required')" class="form-control-feedback">
-                Username is required
+                Unesite korisničko ime
             </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-            <input matInput type="password" placeholder="Password" formControlName="password">
+            <input matInput type="password" placeholder="Zaporka" formControlName="password">
 
             <mat-error *ngIf="form.controls['password'].hasError('required')" class="form-control-feedback">
-                Password is required
+                Unesite zaporku
             </mat-error>
         </mat-form-field>
 
-        <button type="submit" [disabled]="loginLoading || form.invalid" mat-raised-button color="primary">INICIAR SESIÓN</button>
+        <button type="submit" [disabled]="loginLoading || form.invalid" mat-raised-button color="primary">PRIJAVA</button>
     </fieldset>
 </form>
-
-<div class="redirection">
-    <span class="text">Don't have an account?</span>
-    <a class="link" routerLink="/auth/register">Create an account</a>
-</div>
 
 <mat-spinner class="loading" [diameter]="25" *ngIf="loginLoading">
 </mat-spinner>

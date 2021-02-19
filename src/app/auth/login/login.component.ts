@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(DashboardComponent.path());
         },
         error => {
-          this.snackBar.open('Contraseña o usuario incorrecto', '', {
+          this.snackBar.open('Molimo unesite ispravne podatke', '', {
             duration: 3000,
             horizontalPosition: 'end',
             verticalPosition: 'bottom'

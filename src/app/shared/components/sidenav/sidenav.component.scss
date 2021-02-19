@@ -1,8 +1,8 @@
 @import '../../../core/styles/variables/palette.scss';
 
-$primary: #2D323E;
-$accent: $app-accent-color;
-$color: rgba(255, 255, 255, 0.87);
+$primary: #ffffff;
+$accent: #E5E5E5;
+$color: #606060;
 
 :host {
   height: auto;
@@ -18,7 +18,9 @@ $color: rgba(255, 255, 255, 0.87);
   min-width: 300px;
   overflow: auto;
   overflow-x: hidden;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+  /* box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);*/
+  border-right: 2px solid #e7e7e7;
+
   transition: width 0.35s, min-width 0.35s;
 
   ::ng-deep {
@@ -30,7 +32,7 @@ $color: rgba(255, 255, 255, 0.87);
       justify-content: space-between;
       background-color: lighten($primary, 4%);
       color: $color;
-      box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+      /* box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12); */
 
       .mat-toolbar-row {
         justify-content: space-between;
@@ -68,9 +70,12 @@ $color: rgba(255, 255, 255, 0.87);
         dt {
           padding: 16px;
           // border-left: 4px solid transparent;
-          color: rgba(255, 255, 255, 0.87);
+          color: $color;
           cursor: pointer;
           outline: none;
+          font-weight: 400;
+          font-size: 16px;
+          padding-left: 24px;
 
           &:hover {
             background-color: darken($primary, 2%);
@@ -81,21 +86,26 @@ $color: rgba(255, 255, 255, 0.87);
             // background-color: darken($primary, 4%);
              background-color: $accent;
           }
+          mat-icon {
+            color: rgba(0,0,0,0.54);
+            font-size: 30px;
+            line-height: 16px;
+            float: left;
+            margin-right: 14px;
+            min-width: 35px;
+          }
         }
 
         &.submenu {
           transition: all 0.4s;
 
           dt {
-            display: flex;
-            justify-content: space-between;
 
             &:after {
               font-family: 'Material Icons';
               content: "expand_more";
               transition: all 0.4s ease;
-              display: flex;
-              align-items: center;
+              margin-top: 10px;
             }
           }
 
@@ -106,18 +116,26 @@ $color: rgba(255, 255, 255, 0.87);
             transition: height 0.4s;
 
             a {
-              color: rgba(255, 255, 255, 0.87);
+              color: $color;
               display: block;
               letter-spacing: .1px;
               overflow: hidden;
               padding: 16px;
-              padding-left: 18px;
+              padding-left: 36px;
               text-overflow: ellipsis;
               white-space: nowrap;
               text-decoration: none;
+              font-size: 16px;
+              font-weight: 400;
+              outline: none;
+              background-color: $primary;
               cursor: pointer;
 
               &.active {
+                background-color: $accent;
+              }
+
+              &.hover {
                 background-color: $accent;
               }
             }

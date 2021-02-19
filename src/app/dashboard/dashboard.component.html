@@ -3,8 +3,9 @@
         <mat-toolbar class="sidenav-header">
             <mat-toolbar-row>
                 <div class="logo">
-                    <img class="logo-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-                    <span class="logo-text secondary-text">NgxAdmin</span>
+                    <!--<img class="logo-icon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">-->
+                    <img class="" src="assets/images/logo.svg">
+                    <!--<span class="logo-text secondary-text">NgxAdmin</span>-->
                 </div>
 
                 <button *ngIf="isSidenavFixed" mat-icon-button aria-label="" (click)="onToggeleSidenav()">
@@ -14,16 +15,36 @@
         </mat-toolbar>
         <div class="sidenav-menu">
             <dl>
-                <dt routerLink="/dashboard/home" routerLinkActive="active">Home</dt>
+                <dt routerLink="/dashboard/home" routerLinkActive="active">
+                    <mat-icon> home </mat-icon>
+                    <span>
+                        Naslovnica
+                    </span>
+                </dt>
             </dl>
             <dl>
-                <dt routerLink="/dashboard/customer" routerLinkActive="active">Customer</dt>
+                <dt routerLink="/dashboard/customer" routerLinkActive="active">
+                    <mat-icon> person </mat-icon>
+                    <span>
+                        Customer
+                    </span>                    
+                </dt>
             </dl>
             <dl>
-                <dt routerLink="/dashboard/movie" routerLinkActive="active">Movie</dt>
+                <dt routerLink="/dashboard/movie" routerLinkActive="active">
+                    <mat-icon> show_chart </mat-icon>
+                    <span>
+                        Movie
+                    </span>      
+                </dt>
             </dl>
             <dl class="submenu">
-                <dt>Product</dt>
+                <dt>                    
+                    <mat-icon> restaurant </mat-icon>
+                    <span>
+                        Product
+                    </span>  
+                </dt>
                 <dd>
                     <a routerLink="/dashboard/product"
                        routerLinkActive="active"
@@ -37,7 +58,12 @@
                 </dd>
             </dl>
             <dl>
-                <dt routerLink="/dashboard/users" routerLinkActive="active">Users</dt>
+                <dt routerLink="/dashboard/users" routerLinkActive="active">
+                    <mat-icon> supervised_user_circle </mat-icon>
+                    <span>
+                        Users
+                    </span>  
+                </dt>
             </dl>
         </div>
     </app-sidenav>
@@ -47,11 +73,6 @@
             <mat-toolbar-row>
                 <button mat-button class="side-nav-toggle" (click)="onToggeleSidenav()">
                     <mat-icon> menu </mat-icon>
-                </button>
-
-                <button fxHide.lt-md mat-raised-button class="warn-A400 u-margin-l-8">
-                    <mat-icon style="font-size: 18px; height: 18px; width: 24px; color: rgba(0,0,0,.54);">dashboard</mat-icon>
-                    Material Theme (Angular 11)
                 </button>
 
                 <span fxFlex></span>
@@ -68,10 +89,6 @@
                             <mat-icon> person </mat-icon>
                             <span> Profile </span>
                         </button>
-                        <button mat-menu-item disabled>
-                            <mat-icon> announcement </mat-icon>
-                            <span> Notifications </span>
-                        </button>
                         <mat-divider></mat-divider>
                         <button mat-menu-item (click)="logout()">
                             <mat-icon> exit_to_app </mat-icon>
@@ -79,25 +96,6 @@
                         </button>
                     </mat-menu>
                 </div>
-
-                <button mat-button [matMenuTriggerFor]="menuLanguage" class="settings">
-                    <img src="assets/images/flags/us.png" style="margin-right: 8px;">
-                    <span>EN</span>
-                </button>
-                <mat-menu #menuLanguage="matMenu" [overlapTrigger]="false" xPosition="before" yPosition="above">
-                    <button mat-menu-item>
-                        <img src="assets/images/flags/us.png" style="margin-right: 8px;">
-                        <span>EN</span>
-                    </button>
-                    <button mat-menu-item>
-                        <img src="assets/images/flags/tr.png" style="margin-right: 8px;">
-                        <span>TR</span>
-                    </button>
-                </mat-menu>
-
-                <button mat-button class="settings" (click)="toggleFullscreen()">
-                    <mat-icon>fullscreen</mat-icon>
-                </button>
 
                 <button mat-button class="settings">
                     <mat-icon>format_list_bulleted</mat-icon>
@@ -113,7 +111,7 @@
 
             <div class="content__footer">
                 <div id="license-footer">
-                    Nastambe ©IRId.o.o
+                    Životinjske nastambe © IRI d.o.o
                 </div>
             </div>
         </div>

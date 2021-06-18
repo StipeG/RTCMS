@@ -14,7 +14,7 @@
                 <mat-icon>menu</mat-icon>
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i = dataIndex;" fxFlex="70px">
-                <button mat-icon-button (click)="expand_icon_click(row)">
+                <button mat-icon-button (click)="expand_icon_click(row, $event)">
                     <mat-icon>{{ expandedElement[row[primary_key]] ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
                 </button>
             </mat-cell>
@@ -74,4 +74,3 @@
     <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event"></mat-paginator>
 
 </div>
-

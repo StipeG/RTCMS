@@ -1,5 +1,6 @@
 import { Component, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SafePipe } from  '../../pipes/safe-pipe.pipe';
 
 @Component({
   selector: 'app-alert-dialog',

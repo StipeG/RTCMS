@@ -1,0 +1,87 @@
+<button class="close" mat-button (click)="onNoClick($event)" style="float: right;">X</button>
+<h2 mat-dialog-title>Uredi specifikaciju za - {{associate_record.Organizationunit.Name}} - {{associate_record.E_month}}/{{associate_record.E_year}} - {{GetStatusString()}}</h2>
+<mat-dialog-content>
+    <div>
+        <h2>Unos od - {{GetAssociateName()}}</h2>
+        <hr />
+        <h3 style="font-weight: 500;">Korak 1</h3>
+        <div fxLayout="row">
+            <div fxFlex="70">
+                <h4>Detalji specifikacije</h4>
+            </div>
+            <div fxFlex="30">
+                <button style="float: right; margin-bottom: 15px; margin-right: 15px;" type="button" mat-raised-button class="u-margin-l-8" [disabled]="!f_selection.hasValue || !f_selection.selected || !f_selection.selected[0] || (associate_record.Status === 2 || report.Status > 2)" (click)="updateRecords_clicked($event)">
+                    <mat-icon>edit</mat-icon>Pregledaj/Uredi
+                </button>
+            </div>
+        </div>
+        <app-shared-table [dataSource]="f_dataSource" [columnsdef]="f_displayedColumns" #f_table
+        [placeholder]="placeholder"
+        [annotiator]="annotiator" [selectionMode]="selectionMode" [selection]="f_selection"></app-shared-table>
+        <hr />
+        <div fxLayout="row">
+            <div fxFlex="50">
+                <h3>Total - Izvještaj</h3>
+                <div *ngFor="let item of f_totalHelper">
+                    <b>{{item.AssigmentName}}: </b><span>{{item.TotalPrice}} HRK</span>
+                </div>
+            </div>
+            <div fxFlex="50">        
+                <h3>Total - Odobreno</h3>
+                <div *ngFor="let item of s_totalHelper">
+                    <b>{{item.AssigmentName}}: </b><span>{{item.TotalPrice}} HRK</span>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div fxLayout="row">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Trošak</mat-label>
+                <textarea matInput disabled>{{associate_record.Expense}}</textarea>
+              </mat-form-field>
+        </div>
+        <hr />
+        <h3 style="font-weight: 500;">Korak 2</h3>
+        <div xLayout="row">
+            <div fxFlex="100" style="align-content: center; text-align: center;">
+                <h4>Računi i putni nalozi</h4>
+                <button style="margin-bottom: 15px;" type="button" mat-raised-button class="u-margin-l-8" [disabled]="(associate_record.Status === 2 || report.Status > 2)" (click)="updateReport_clicked($event)">
+                    <mat-icon>edit</mat-icon>Izmjeni putne naloge i netearnings
+                </button>
+                <br />
+            </div>
+        </div>
+        <hr />
+    </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="center">
+    <div xLayout="row">
+        <div fxFlex="100" style="align-content: center; text-align: center;">
+            <p style="color: red; font-style: italic;" *ngIf="associate_record.Status === 2">Evidencija je poslana voditelju studija na doradu!</p>
+            <h3 style="font-weight: 500;">Korak 3</h3>
+            <div xLayout="row">
+                <div fxFlex="25" style="align-content: center; text-align: center;">
+                    <button style="margin-bottom: 15px;" type="button" mat-raised-button class="u-margin-l-8" [disabled]="(associate_record.Status === 2 || report.Status > 2)" (click)="UpdateReportToCleared_clicked($event)">
+                       Validiraj
+                    </button>
+                </div>
+                <div fxFlex="25" style="align-content: center; text-align: center;">
+                    <button style="margin-bottom: 15px;" type="button" mat-raised-button class="u-margin-l-8" [disabled]="(associate_record.Status === 2 || report.Status !== 3)" (click)="UpdateReportToApproved_clicked($event)">
+                       Potvrdi
+                    </button>
+                </div>
+                <div fxFlex="25" style="align-content: center; text-align: center;">
+                    <button style="margin-bottom: 15px;" type="button" mat-raised-button class="u-margin-l-8" [disabled]="(associate_record.Status === 2 || report.Status === 5)" (click)="UpdateReportToDeclined_clicked($event)">
+                       Odbaci
+                    </button>
+                </div>
+                <div fxFlex="25" style="align-content: center; text-align: center;">
+                    <button style="margin-bottom: 15px;" type="button" mat-raised-button class="u-margin-l-8" [disabled]="(associate_record.Status === 2 || report.Status < 3)" (click)="UpdateReportToRevive_clicked($event)">
+                       Ponovno postavi
+                    </button>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>

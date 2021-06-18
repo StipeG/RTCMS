@@ -12,6 +12,11 @@ export class LoadingBackdropService {
     const bodyElement = document.querySelector('body');
     bodyElement.appendChild(backdropWrapperElement);
   }
+  showModal() {
+    const backdropWrapperElement = this.createLoadingBackdropTemplate();
+    const bodyElements = document.querySelectorAll('.cdk-overlay-pane');
+    bodyElements[bodyElements.length - 1].appendChild(backdropWrapperElement);
+  }
 
   hide() {
     const backdropWrapperElement = document.querySelector('#loadingBackdrop');
@@ -30,6 +35,7 @@ export class LoadingBackdropService {
       position: absolute;
       top: 0;
       z-index: 999;
+      left:0;
     `);
     element.innerHTML = `
       <div class="backdrop"></div>

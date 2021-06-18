@@ -5,9 +5,11 @@
 export const environment = {
   production: false,
   backend: {
-    host: 'http://localhost:9004',
+    //host: 'http://localhost:3333/secure',
+    //host: 'https://evidencija.aspira.hr/secure'
+    host: 'http://localhost:62657/secure'
   },
-  oauth: {
+/*   oauth: {
     host: 'https://demo0034835.mockable.io',
     client_id: '2',
     client_secret: 'tsN80QNwTawD3WZSX2uziOFI6HstTEs2bXBqsCyv',
@@ -15,7 +17,7 @@ export const environment = {
   },
   movieDB: {
     host: 'https://api.themoviedb.org/3',
-  },
+  }, */
   ba:{
     //EleybeNiTyW
     id: 'RWxleWJlTmlUeVc=',

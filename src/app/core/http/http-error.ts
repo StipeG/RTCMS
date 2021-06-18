@@ -32,7 +32,7 @@ export class HttpError {
     this._message = value;
   }
 
-  public static initWithCode(code: string | null): HttpError {
+  public static initWithCode(code: string | null, errorResponse: any): HttpError {
     const httpError = new HttpError();
     httpError.code = code;
 
@@ -40,6 +40,23 @@ export class HttpError {
     if (appError) {
       httpError.title = appError.title;
       httpError.message = appError.message;
+    }
+    else
+    {
+      if(errorResponse.error.Message)
+      {
+        let errorMessage = null;
+        try {
+          errorMessage = JSON.parse(errorResponse.error.Message);
+        } catch (e) {
+          errorMessage = null;
+        }
+        if(errorMessage && errorMessage.MissingMoodles)
+        {
+          httpError.title = "MissingMoodles";
+          httpError.message = JSON.stringify(errorMessage.MissingMoodles);
+        }
+      }
     }
 
     return httpError;

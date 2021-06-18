@@ -18,7 +18,8 @@ export interface Column {
   width?: number,
   type: string,
   disabled?: boolean,
-  isPrimary:boolean
+  isPrimary:boolean,
+  hidden?:boolean
 }
 
 @Component({
@@ -48,7 +49,7 @@ export class SharedTableComponent implements OnChanges, OnDestroy, OnInit  {
 
   // MatPaginator Inputs
   length = 100;
-  pageSize = 5;
+  pageSize = 25;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
   // MatPaginator Output
@@ -86,9 +87,9 @@ export class SharedTableComponent implements OnChanges, OnDestroy, OnInit  {
 
   isExpansionDetailRow = (index, item) => item.hasOwnProperty('detailRow');
 
-  public expand_icon_click(row: any)
+  public expand_icon_click(row: any, event: Event)
   {
-    
+    event.preventDefault();
     this.expandedElement[row[this.primary_key]] =! this.expandedElement[row[this.primary_key]];
   }
   trackByFn(index, item) { 
@@ -524,8 +525,8 @@ export class SharedTableComponent implements OnChanges, OnDestroy, OnInit  {
       }
 
       this.columnsdef = sortedColumns.sort((a, b) => a.order - b.order);
-      this.visibleColumns = this.columnsdef.filter(column => column.visible);
-      this.hiddenColumns = this.columnsdef.filter(column => !column.visible)
+      this.visibleColumns = this.columnsdef.filter(column => column.visible && (!column.hidden));
+      this.hiddenColumns = this.columnsdef.filter(column => !column.visible  && (!column.hidden));
     })
 
     this._changeDetectorRef.detectChanges();

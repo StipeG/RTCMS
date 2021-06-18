@@ -6,27 +6,33 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
-import { FileUploadPreviewComponent } from './components/file-upload-preview/file-upload-preview.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { DndDirective } from './components/file-upload-preview/dnd.directive';
 import { ConfirmDialogComponent } from './utils/dialogs/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './utils/dialogs/alert-dialog/alert-dialog.component';
 import { SharedTableComponent } from './utils/shared-table/shared-table.component';
 import {ResizeColumnDirective} from './utils/shared-table/resize-column.directive';
+import { TwoDigitDecimaNumberDirective } from './utils/directives/two-digit-decima-number.directive';
+import { SafePipe } from './utils/pipes/safe-pipe.pipe';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { ProgressComponent } from './components/progress/progress.component';
+import { DndDirective2 } from './components/file-upload/dnd.directive';
 
 const COMPONENTS = [
   AlertDialogComponent,
   ConfirmDialogComponent,
-  FileUploadPreviewComponent,
   SidenavComponent,
   SharedTableComponent,
-  ResizeColumnDirective
+  ResizeColumnDirective,
+  FileUploadComponent, ProgressComponent,
+  
 ];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    DndDirective,
+    TwoDigitDecimaNumberDirective,
+    DndDirective2,
+    SafePipe
   ],
   imports: [
     CommonModule,
@@ -40,6 +46,9 @@ const COMPONENTS = [
     ReactiveFormsModule,
     MaterialModule,
     PerfectScrollbarModule,
+    TwoDigitDecimaNumberDirective,
+    DndDirective2,
+    SafePipe,
     ...COMPONENTS
   ],
   entryComponents: [

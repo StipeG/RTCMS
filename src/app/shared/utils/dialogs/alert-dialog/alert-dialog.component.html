@@ -1,7 +1,6 @@
 <h2 mat-dialog-title>{{ data.title }}</h2>
 
-<mat-dialog-content>
-  {{ data.body }}
+<mat-dialog-content [innerHtml]="data.body| safe: 'html'">
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "nastambe": {
+    "evidencija": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/nastambe",
+            "outputPath": "dist/evidencija",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -65,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "nastambe:build"
+            "browserTarget": "evidencija:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "nastambe:build:production"
+              "browserTarget": "evidencija:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nastambe:build"
+            "browserTarget": "evidencija:build"
           }
         },
         "test": {
@@ -113,16 +113,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "nastambe:serve"
+            "devServerTarget": "evidencija:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "nastambe:serve:production"
+              "devServerTarget": "evidencija:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "nastambe"
+  "defaultProject": "evidencija"
 }

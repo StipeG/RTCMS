@@ -1,1 +1,35 @@
-<h3>HOME</h3>
+<div class="carded">
+    <div class="top-bg accent" style="top: 65px;"></div>
+    <div class="center">
+        <div class="header accent">
+            <h2>Financijski dio - Evidencija</h2>
+            <div>
+                <button type="button" mat-raised-button style="margin-bottom: 10px;" class="u-margin-l-8" [disabled]="!selection.hasValue || !selection.selected || !selection.selected[0] || selection.selected[0].StatusReport > 2 || selection.selected[0].StatusRecord === 2" (click)="returnreport_clicked($event)">
+                    <mat-icon>assignment_return</mat-icon>Vrati voditelju studija na doradu
+                </button>                
+                 <button type="button" mat-raised-button style="margin-bottom: 10px;" class="u-margin-l-8" [disabled]="!selection.hasValue || !selection.selected || !selection.selected[0]" (click)="updateRecordsSpecification_clicked($event)">
+                    <mat-icon>edit</mat-icon>Pregledaj/Uredi Specifikaciju
+                </button>
+            </div>
+        </div>
+        <div class="content-card">
+            <perfect-scrollbar>
+                <div style="margin:15px;">
+                    <mat-form-field style="margin-right: 15px;">
+                        <mat-select placeholder="Odaberite status" [(value)]="selectedStatus">
+                            <mat-option *ngFor="let item of statuses" [value]="item.Id">
+                            {{item.Text}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button type="button" mat-raised-button class="u-margin-l-8" (click)="loadData_click($event)">
+                        Dohvati
+                    </button>
+                </div>
+                <app-shared-table [dataSource]="dataSource" [columnsdef]="displayedColumns" 
+                [placeholder]="placeholder" (clickRequest)="clickChild($event)"
+                [annotiator]="annotiator" [selectionMode]="selectionMode" [selection]="selection"></app-shared-table>
+            </perfect-scrollbar>
+        </div>
+    </div>
+</div>

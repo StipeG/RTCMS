@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { HttpApi } from '../http/http-api';
 
-const OAUTH_DATA = environment.oauth;
+//const OAUTH_DATA = environment.oauth;
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(userRequest: any): Observable<any> {
+  /* register(userRequest: any): Observable<any> {
     const data = {
       code: userRequest.codigo,
       email: userRequest.email,
@@ -28,9 +28,9 @@ export class AuthService {
           return response;
         })
       );
-  }
+  } */
 
-  loginWithUserCredentials(username: string, password: string): Observable<any> {
+/*   loginWithUserCredentials(username: string, password: string): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
 
@@ -44,18 +44,18 @@ export class AuthService {
           return response;
         })
       );
-  }
+  } */
 
-  loginWithRefreshToken(): Observable<any> {
+/*   loginWithRefreshToken(): Observable<any> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
 
     const body = new URLSearchParams();
     body.set('grant_type', 'refresh_token');
-    body.set('client_id', OAUTH_DATA.client_id);
-    body.set('client_secret', OAUTH_DATA.client_secret);
+    //body.set('client_id', OAUTH_DATA.client_id);
+    //body.set('client_secret', OAUTH_DATA.client_secret);
     body.set('refresh_token', this.refreshToken);
-    body.set('scope', OAUTH_DATA.scope);
+    //body.set('scope', OAUTH_DATA.scope);
 
     return this.http.post(HttpApi.userLogin, body.toString(), { headers })
       .pipe(
@@ -64,9 +64,9 @@ export class AuthService {
           return response;
         })
       );
-  }
+  } */
 
-  isLogged(): boolean {
+/*   isLogged(): boolean {
     return localStorage.getItem('session') ? true : false;
   }
 
@@ -80,5 +80,5 @@ export class AuthService {
 
   get refreshToken() {
     return localStorage.session ? JSON.parse(localStorage.session).refresh_token : null;
-  }
+  } */
 }

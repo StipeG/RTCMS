@@ -27,9 +27,9 @@ export class AppInterceptor implements HttpInterceptor {
 
   private performRequest(req: HttpRequest<any>): HttpRequest<any> {
     let headers: HttpHeaders = req.headers;
-    headers = headers.set('X-Basic-Auth', 'Basic ' + btoa(atob(environment.ba.id) + ':' + atob(environment.ba.client_secret)));
-
-    return req.clone({ url: `${environment.backend.host}/${req.url}`, headers });
+    //headers = headers.set('X-Basic-Auth', 'Basic ' + btoa(atob(environment.ba.id) + ':' + atob(environment.ba.client_secret)));
+    //return req;
+    return req.clone({ url: `${environment.backend.host}/${req.url}` });
 }
 
   private handleSuccessfulResponse(event): HttpResponse<any> {
@@ -60,7 +60,7 @@ export class AppInterceptor implements HttpInterceptor {
 
     let customError = new HttpError();
     try {
-      customError = HttpError.initWithCode(errorResponse.error.errors[0].code);
+      customError = HttpError.initWithCode(errorResponse.status, errorResponse);
     } catch (e) { }
 
     return throwError(customError);

@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "angular-pipes": "^10.0.0",
+    "file-saver": "^2.0.5",
     "ngx-perfect-scrollbar": "^10.0.1",
     "rxjs": "~6.5.4",
     "safe-pipe": "^1.0.3",

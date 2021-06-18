@@ -1,0 +1,14 @@
+.mar10p
+{
+    margin-top: 10px;
+}
+.mat-form-field
+{
+    display: block;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+::ng-deep html.cdk-global-scrollblock {
+    top: 0px !important;
+}

@@ -1,0 +1,37 @@
+<button class="close" mat-button (click)="onNoClick($event)" style="float: right;">X</button>
+<h2 mat-dialog-title>Uredi specifikaciju za - {{associate_record.Organizationunit.Name}} - {{associate_record.E_month}}/{{associate_record.E_year}} - {{GetStatusString()}}</h2>
+<mat-dialog-content [formGroup]="form">
+    <div>
+        <h2>Promijeni specifikaciju od - {{GetAssociateName()}} za stavku: {{item.Assignment.Type}}</h2>
+    </div>
+    <mat-form-field>
+        <input matInput
+                placeholder="Količinska vrijednost odobrena"
+                formControlName="Quantityapproved"
+                type="number" 
+                appTwoDigitDecimaNumber>
+        <mat-error *ngIf="form.controls['Quantityapproved'].hasError('required')">Iznos je obavezan</mat-error>
+    </mat-form-field>
+    <p style="font-style: italic;">Količinska vrijednost izvještaj: {{item.Quantityreported}}</p>
+    <mat-form-field>
+        <input matInput
+                placeholder="Jedinična cijena odobrena"
+                formControlName="Unitpriceapproved"
+                type="number" 
+                appTwoDigitDecimaNumber>
+        <mat-error *ngIf="form.controls['Unitpriceapproved'].hasError('required')">Iznos je obavezan</mat-error>
+    </mat-form-field>
+    <p style="font-style: italic;">Jedinična cijena izvještaj: {{item.Unitpricearchived}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="mat-raised-button mar10p u-margin-l-8"
+    (click)="onNoClick($event)">
+            Zatvori
+    </button>
+    <button type="button" mat-raised-button class="mat-primary u-margin-l-8 mar10p" [disabled]="!form.valid"
+            (click)="save($event)">
+        Snimi
+    </button>
+
+</mat-dialog-actions>

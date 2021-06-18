@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../core/services/auth.service';
+import { BasicService } from '../core/services/basic.service';
 
 const WIDTH_FOR_RESPONSIVE = 1280;
 
@@ -14,6 +15,8 @@ export class DashboardComponent implements OnInit {
   isSidenavOpen = true;
   isSidenavFixed = false;
   static path = () => ['dashboard'];
+  attribute: any;
+  selected: string = 'Home';
 
   @HostListener('window:resize', ['$event']) onResize(event) {
     this.applyResponsiveIfNeed(event.target.innerWidth);
@@ -21,18 +24,15 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef,
-    private authService: AuthService,
-    private router: Router
-  ) { }
+    private basicService: BasicService
+  ) { 
+      this.attribute = this.basicService.CoreObject;
+    }
 
   ngOnInit() {
     this.applyResponsiveIfNeed(window.innerWidth);
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['auth/login']);
-  }
 
   toggleFullscreen() {
     const elem = this.elementRef.nativeElement.querySelector('.dashboard');
@@ -47,7 +47,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  onToggeleSidenav() {
+  onToggeleSidenav(e:Event) {
+    e.preventDefault();
     this.isSidenavOpen = !this.isSidenavOpen;
   }
 
